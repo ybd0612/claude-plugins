@@ -8,18 +8,5 @@
   },
   "repository": "https://github.com/ybd0612/claude-plugins",
   "license": "MIT",
-  "hooks": {
-    "SessionStart": [
-      {
-        "matcher": "startup|resume|clear|compact",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/handshake.sh",
-            "timeout": 10
-          }
-        ]
-      }
-    ]
-  }
+  "hooks": "hooks/hooks.json"
 }

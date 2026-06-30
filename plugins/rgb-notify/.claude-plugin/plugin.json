@@ -8,19 +8,5 @@
   },
   "repository": "https://github.com/ybd0612/claude-plugins",
   "license": "MIT",
-  "platforms": ["windows"],
-  "hooks": {
-    "Stop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/rgb-stop-hook.sh",
-            "timeout": 30
-          }
-        ]
-      }
-    ]
-  }
+  "hooks": "hooks/hooks.json"
 }

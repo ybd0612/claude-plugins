@@ -1,12 +1,14 @@
 {
-  "SessionStart": {
-    "matcher": "startup|resume|clear|compact",
-    "hooks": [
-      {
-        "type": "command",
-        "command": "${CLAUDE_PLUGIN_ROOT}/hooks/handshake.sh",
-        "timeout": 10
-      }
-    ]
+  "hooks": {
+    "SessionStart": {
+      "matcher": "startup|resume|clear|compact",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/hooks/handshake.sh",
+          "timeout": 10
+        }
+      ]
+    }
   }
 }
