@@ -41,29 +41,18 @@ rm -f "${CLAUDE_MD}.handshake.tmp"
 
 if [ -n "$FIRST_H2" ]; then
   # Insert before the first ## heading
-  {
-    head -n "$((FIRST_H2 - 1))" "$CLAUDE_MD"
-    echo ""
-    echo "$HANDSHAKE"
-    echo ""
-    tail -n +"$FIRST_H2" "$CLAUDE_MD"
-  } > "${CLAUDE_MD}.handshake.tmp"
+  head -n "$((FIRST_H2 - 1))" "$CLAUDE_MD" > "${CLAUDE_MD}.handshake.tmp"
+  printf '\n%s\n\n' "$HANDSHAKE" >> "${CLAUDE_MD}.handshake.tmp"
+  tail -n +"$FIRST_H2" "$CLAUDE_MD" >> "${CLAUDE_MD}.handshake.tmp"
 elif [ -n "$FIRST_H1" ]; then
   # No ## headings: insert before the first # heading
-  {
-    head -n "$((FIRST_H1 - 1))" "$CLAUDE_MD"
-    echo ""
-    echo "$HANDSHAKE"
-    echo ""
-    tail -n +"$FIRST_H1" "$CLAUDE_MD"
-  } > "${CLAUDE_MD}.handshake.tmp"
+  head -n "$((FIRST_H1 - 1))" "$CLAUDE_MD" > "${CLAUDE_MD}.handshake.tmp"
+  printf '\n%s\n\n' "$HANDSHAKE" >> "${CLAUDE_MD}.handshake.tmp"
+  tail -n +"$FIRST_H1" "$CLAUDE_MD" >> "${CLAUDE_MD}.handshake.tmp"
 else
   # No headings at all: prepend to top
-  {
-    echo "$HANDSHAKE"
-    echo ""
-    cat "$CLAUDE_MD"
-  } > "${CLAUDE_MD}.handshake.tmp"
+  printf '%s\n\n' "$HANDSHAKE" > "${CLAUDE_MD}.handshake.tmp"
+  cat "$CLAUDE_MD" >> "${CLAUDE_MD}.handshake.tmp"
 fi
 
 if [ -f "${CLAUDE_MD}.handshake.tmp" ]; then
