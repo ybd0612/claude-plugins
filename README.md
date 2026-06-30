@@ -27,6 +27,8 @@ claude plugin install ybd0612/claude-plugins#handshake
 claude plugin install ybd0612/claude-plugins#rgb-notify
 ```
 
+> 重复安装会自动覆盖旧版本；如需先卸载再装，运行 `claude plugin uninstall <name>` 后再 install。
+
 ## 配置
 
 ### Handshake
