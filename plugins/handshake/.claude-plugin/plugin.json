@@ -7,6 +7,5 @@
     "name": "ybd06"
   },
   "repository": "https://github.com/ybd0612/claude-plugins",
-  "license": "MIT",
-  "hooks": "hooks/hooks.json"
+  "license": "MIT"
 }
