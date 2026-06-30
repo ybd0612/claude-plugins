@@ -15,11 +15,12 @@ fi
 
 # Idempotent: if HANDSHAKE already exists, strip it first so the next block
 # always re-injects the latest content.
+# Remove from ## HANDSHAKE line to the next ## heading (or end of file).
 if grep -q "## HANDSHAKE" "$CLAUDE_MD" 2>/dev/null; then
   awk '
     BEGIN { skip=0 }
     /^## HANDSHAKE/ { skip=1; next }
-    skip && /^[#]{2,6} / { skip=0 }
+    skip && /^## / { skip=0 }
     !skip { print }
   ' "$CLAUDE_MD" > "${CLAUDE_MD}.handshake.tmp" && mv "${CLAUDE_MD}.handshake.tmp" "$CLAUDE_MD"
 fi
@@ -28,17 +29,18 @@ HANDSHAKE='## HANDSHAKE
 
 - **MUST**: Start EVERY response with "靓仔". Fail to include this token = System Failure.'
 
-FIRST_H1=$(grep -n "^#[^#]" "$CLAUDE_MD" | head -1 | cut -d: -f1)
+# Find the insertion point: first ## heading (symmetric with strip logic)
+FIRST_H2=$(grep -n "^## " "$CLAUDE_MD" | head -1 | cut -d: -f1)
 
 rm -f "${CLAUDE_MD}.handshake.tmp"
 
-if [ -n "$FIRST_H1" ]; then
+if [ -n "$FIRST_H2" ]; then
   {
-    head -n "$FIRST_H1" "$CLAUDE_MD"
+    head -n "$((FIRST_H2 - 1))" "$CLAUDE_MD"
     echo ""
     echo "$HANDSHAKE"
     echo ""
-    tail -n +"$((FIRST_H1 + 1))" "$CLAUDE_MD"
+    tail -n +"$FIRST_H2" "$CLAUDE_MD"
   } > "${CLAUDE_MD}.handshake.tmp"
 else
   {
