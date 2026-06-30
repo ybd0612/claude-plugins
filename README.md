@@ -15,16 +15,20 @@
 
 > 前提：Claude Code ≥ 1.0，已全局安装 `@anthropic-ai/claude-code`。
 
+在 Claude Code **交互式终端**中执行：
+
 ```bash
 # 1. 添加插件源（支持 owner/repo 简写）
-claude plugins marketplace add ybd0612/claude-plugins
+/plugins marketplace add ybd0612/claude-plugins
 
 # 2. 从源安装插件
-claude plugins install handshake@ybd06-claude-plugins
-claude plugins install rgb-notify@ybd06-claude-plugins
+/plugins install handshake@ybd06-claude-plugins
+/plugins install rgb-notify@ybd06-claude-plugins
 ```
 
-### 方法二：本地目录安装
+> **注意**：`/plugins` 是 Claude Code 交互式模式的斜杠命令，需在 Claude Code 对话中直接输入，不是在系统 shell 中运行。
+
+### 方法二：从命令行安装
 
 ```bash
 # 克隆仓库
@@ -32,8 +36,8 @@ git clone https://github.com/ybd0612/claude-plugins.git
 cd claude-plugins
 
 # 从本地路径安装
-claude plugin install plugins/handshake
-claude plugin install plugins/rgb-notify
+claude plugins install plugins/handshake
+claude plugins install plugins/rgb-notify
 ```
 
 > 重复安装会自动覆盖旧版本；如需先卸载再装，运行 `claude plugin uninstall <name>` 后再 install。
