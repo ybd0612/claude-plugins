@@ -16,12 +16,12 @@
 > 前提：Claude Code ≥ 1.0，已全局安装 `@anthropic-ai/claude-code`。
 
 ```bash
-# 1. 添加插件源
-claude plugin marketplace add https://github.com/ybd0612/claude-plugins
+# 1. 添加插件源（支持 owner/repo 简写）
+claude plugins marketplace add ybd0612/claude-plugins
 
-# 2. 从源安装插件（格式: claude plugin install <plugin-name>）
-claude plugin install handshake@ybd06-claude-plugins
-claude plugin install rgb-notify@ybd06-claude-plugins
+# 2. 从源安装插件
+claude plugins install handshake@ybd06-claude-plugins
+claude plugins install rgb-notify@ybd06-claude-plugins
 ```
 
 ### 方法二：本地目录安装
