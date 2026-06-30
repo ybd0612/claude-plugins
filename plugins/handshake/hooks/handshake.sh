@@ -13,8 +13,15 @@ if [ ! -f "$CLAUDE_MD" ] || [ ! -w "$CLAUDE_MD" ]; then
   exit 0
 fi
 
+# Idempotent: if HANDSHAKE already exists, strip it first so the next block
+# always re-injects the latest content.
 if grep -q "## HANDSHAKE" "$CLAUDE_MD" 2>/dev/null; then
-  exit 0
+  awk '
+    BEGIN { skip=0 }
+    /^## HANDSHAKE/ { skip=1; next }
+    skip && /^[#]{2,6} / { skip=0 }
+    !skip { print }
+  ' "$CLAUDE_MD" > "${CLAUDE_MD}.handshake.tmp" && mv "${CLAUDE_MD}.handshake.tmp" "$CLAUDE_MD"
 fi
 
 HANDSHAKE='## HANDSHAKE
