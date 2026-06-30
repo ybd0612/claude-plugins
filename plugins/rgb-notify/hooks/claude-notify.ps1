@@ -2,9 +2,12 @@
 # 功能：屏幕边缘 RGB 跑马灯特效 + 任务栏闪烁 + 声音提示
 
 param(
-    [int]$GlowDuration = 10,     # 发光持续秒数
-    [int]$GlowThickness = 40,    # 发光边缘厚度（像素）
-    [switch]$Glow                # 内部参数：子进程模式标记
+    [int]$GlowDuration = 10,           # 发光持续秒数
+    [int]$GlowThickness = 40,          # 发光边缘厚度（像素）
+    [bool]$EnableMarquee = $true,      # 是否启用 RGB 跑马灯
+    [bool]$EnableNotify = $true,       # 是否启用系统通知气泡
+    [bool]$EnableSound = $true,        # 是否启用提示音
+    [switch]$Glow                      # 内部参数：子进程模式标记
 )
 
 # ── HSV 转 RGB 辅助函数 ─────────────────────────────────────────
@@ -225,29 +228,35 @@ public static class NoFocus {
 
 # 1. 用 Start-Process 启动独立进程运行 WPF 发光特效
 #    关键修复：Start-Job 无法创建 WPF 窗口，必须用 Start-Process 启动新进程
-$scriptPath = $MyInvocation.MyCommand.Path
-Start-Process pwsh -ArgumentList @(
-    '-NoProfile',
-    '-ExecutionPolicy', 'Bypass',
-    '-WindowStyle', 'Hidden',
-    '-File', $scriptPath,
-    '-GlowDuration', "$GlowDuration",
-    '-GlowThickness', "$GlowThickness",
-    '-Glow'
-) -WindowStyle Hidden -ErrorAction SilentlyContinue
+if ($EnableMarquee) {
+    $scriptPath = $MyInvocation.MyCommand.Path
+    Start-Process pwsh -ArgumentList @(
+        '-NoProfile',
+        '-ExecutionPolicy', 'Bypass',
+        '-WindowStyle', 'Hidden',
+        '-File', $scriptPath,
+        '-GlowDuration', "$GlowDuration",
+        '-GlowThickness', "$GlowThickness",
+        '-Glow'
+    ) -WindowStyle Hidden -ErrorAction SilentlyContinue
+}
 
 # 2. Windows 系统通知弹窗
-Add-Type -AssemblyName System.Windows.Forms
-$notify = New-Object System.Windows.Forms.NotifyIcon
-$notify.Icon = [System.Drawing.SystemIcons]::Information
-$notify.Visible = $true
-$notify.BalloonTipTitle = 'Claude Code'
-$notify.BalloonTipText = '任务执行完成！'
-$notify.BalloonTipIcon = 'Info'
-$notify.ShowBalloonTip(5000)
-# 3 秒后释放资源（不阻塞过久）
-Start-Sleep -Seconds 3
-$notify.Dispose()
+if ($EnableNotify) {
+    Add-Type -AssemblyName System.Windows.Forms
+    $notify = New-Object System.Windows.Forms.NotifyIcon
+    $notify.Icon = [System.Drawing.SystemIcons]::Information
+    $notify.Visible = $true
+    $notify.BalloonTipTitle = 'Claude Code'
+    $notify.BalloonTipText = '任务执行完成！'
+    $notify.BalloonTipIcon = 'Info'
+    $notify.ShowBalloonTip(5000)
+    # 3 秒后释放资源（不阻塞过久）
+    Start-Sleep -Seconds 3
+    $notify.Dispose()
+}
 
 # 3. 系统提示音
-try { [System.Media.SystemSounds]::Asterisk.Play() } catch {}
+if ($EnableSound) {
+    try { [System.Media.SystemSounds]::Asterisk.Play() } catch {}
+}

@@ -1,4 +1,7 @@
 {
   "glowDuration": 10,
-  "glowThickness": 40
+  "glowThickness": 40,
+  "enableMarquee": true,
+  "enableNotify": true,
+  "enableSound": true
 }
