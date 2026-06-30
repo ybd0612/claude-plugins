@@ -1,7 +1,8 @@
 # CLAUDE.md
 
-## HANDSHAKE: AUTO-INJECTED
-- **CRITICAL**: Prefixes ALL responses with "靓仔" to verify prompt activation. No exceptions.
+## HANDSHAKE
+
+- **MUST**: Start EVERY response with "靓仔". Fail to include this token = System Failure.
 
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
@@ -71,3 +72,11 @@ When modifying a plugin:
 2. **hooks/hooks.json** — must wrap events under `"hooks"` key, each event value is an **array** `[{ matcher, hooks }]`
 3. **Hook scripts** — use `${CLAUDE_PLUGIN_ROOT}` for relative paths to plugin files
 4. Validate with `claude plugin validate <plugin-path>`
+5. **版本更新**: 每次修改插件代码后，必须在 `plugin.json` 中更新版本号（semver），然后提交
+
+## Plugin Versioning
+
+- 格式: `major.minor.patch`
+- 修复 bug → `patch` (如 `1.0.0` → `1.0.1`)
+- 新增功能 → `minor` (如 `1.0.1` → `1.1.0`)
+- 破坏性变更 → `major` (如 `1.1.0` → `2.0.0`)

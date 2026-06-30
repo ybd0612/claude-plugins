@@ -1,7 +1,7 @@
 {
   "name": "handshake",
   "displayName": "Handshake Hook",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automatically inject a HANDSHAKE section into CLAUDE.md on session start. Calls you 靓仔.",
   "author": {
     "name": "ybd06"
