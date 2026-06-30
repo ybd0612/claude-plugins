@@ -1,0 +1,25 @@
+{
+  "name": "handshake",
+  "displayName": "Handshake Hook",
+  "version": "1.0.0",
+  "description": "Automatically inject a HANDSHAKE section into CLAUDE.md on session start. Calls you 靓仔.",
+  "author": {
+    "name": "ybd06"
+  },
+  "repository": "https://github.com/ybd06/claude-plugins",
+  "license": "MIT",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/handshake.sh",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

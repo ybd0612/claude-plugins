@@ -1,0 +1,26 @@
+{
+  "name": "rgb-notify",
+  "displayName": "RGB Notify",
+  "version": "1.0.0",
+  "description": "Screen-edge rainbow marquee notification when Claude Code tasks complete. Configurable duration and thickness.",
+  "author": {
+    "name": "ybd06"
+  },
+  "repository": "https://github.com/ybd06/claude-plugins",
+  "license": "MIT",
+  "platforms": ["windows"],
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/rgb-stop-hook.sh",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
