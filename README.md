@@ -27,8 +27,6 @@ claude plugin install ybd0612/claude-plugins#handshake
 claude plugin install ybd0612/claude-plugins#rgb-notify
 ```
 
-> **注意**：插件仓库为个人私有用途，不建议公开发布到公共市场。
-
 ## 配置
 
 ### Handshake
@@ -80,10 +78,9 @@ claude-plugins/
 │       ├── .claude-plugin/
 │       │   └── plugin.json     # 插件清单
 │       ├── hooks/
-│       │   ├── hooks.json      # Hook 事件路由
+│       │   ├── hooks.json          # Hook 事件路由
 │       │   ├── rgb-stop-hook.sh    # Stop hook 入口（读取配置）
-│       │   ├── claude-notify.ps1   # PowerShell 主进程（通知+音效）
-│       │   └── rgb-marquee.ps1     # WPF 子进程（跑马灯特效）
+│       │   └── claude-notify.ps1   # PowerShell 主进程（通知+音效+跑马灯）
 │       └── config.example.json # 配置模板
 │
 ├── README.md
@@ -107,8 +104,7 @@ claude-plugins/
 ```
 任务完成 (Stop)
   └─ hooks/rgb-stop-hook.sh 读取配置
-      ├─ 主进程 → PowerShell 通知气泡 + 系统提示音
-      └─ 子进程 → WPF 全屏透明窗口 + 60fps 彩虹跑马灯动画
+      ├─ 主进程 → PowerShell 通知气泡 + 系统提示音 + WPF 跑马灯动画
 ```
 
 ## 安全特性

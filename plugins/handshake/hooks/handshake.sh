@@ -2,7 +2,10 @@
 # SessionStart hook: detect and inject HANDSHAKE into CLAUDE.md
 
 WORKTREE="${CLAUDE_CODE_WORKTREE:-$(pwd)}"
-WORKTREE=$(cygpath -u "$WORKTREE" 2>/dev/null || echo "$WORKTREE")
+# Convert Windows path to POSIX if needed (Cygwin/MSYS)
+if command -v cygpath >/dev/null 2>&1; then
+  WORKTREE=$(cygpath -u "$WORKTREE" 2>/dev/null || echo "$WORKTREE")
+fi
 
 CLAUDE_MD="${WORKTREE}/CLAUDE.md"
 
