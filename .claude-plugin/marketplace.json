@@ -1,0 +1,46 @@
+{
+  "name": "claude-plugins",
+  "id": "claude-plugins",
+  "owner": {
+    "name": "ybd06"
+  },
+  "metadata": {
+    "description": "Claude Code plugin collection — handshake hook + RGB marquee notification",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "handshake",
+      "source": "./plugins/handshake/",
+      "description": "Automatically inject a HANDSHAKE section into CLAUDE.md on session start. Calls you 靓仔.",
+      "version": "1.0.0",
+      "author": {
+        "name": "ybd06"
+      },
+      "keywords": [
+        "hook",
+        "session",
+        "handshake"
+      ],
+      "category": "hook"
+    },
+    {
+      "name": "rgb-notify",
+      "source": "./plugins/rgb-notify/",
+      "description": "Screen-edge rainbow marquee notification when Claude Code tasks complete.",
+      "version": "1.0.0",
+      "author": {
+        "name": "ybd06"
+      },
+      "keywords": [
+        "notification",
+        "rgb",
+        "windows"
+      ],
+      "category": "hook",
+      "platforms": [
+        "windows"
+      ]
+    }
+  ]
+}

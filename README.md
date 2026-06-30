@@ -11,20 +11,18 @@
 
 ## 快速安装
 
-### 从 GitHub 远程安装（推荐）
+### 从 GitHub 克隆后本地安装（推荐）
 
 > 前提：Claude Code ≥ 1.0，已全局安装 `@anthropic-ai/claude-code`。
 
 ```bash
-# 安装 Handshake 插件
-claude plugin install ybd0612/claude-plugins#handshake
+# 1. 克隆仓库
+git clone https://github.com/ybd0612/claude-plugins.git
+cd claude-plugins
 
-# 安装 RGB Notify 插件
-claude plugin install ybd0612/claude-plugins#rgb-notify
-
-# 全部安装
-claude plugin install ybd0612/claude-plugins#handshake
-claude plugin install ybd0612/claude-plugins#rgb-notify
+# 2. 安装插件
+claude plugin install plugins/handshake
+claude plugin install plugins/rgb-notify
 ```
 
 > 重复安装会自动覆盖旧版本；如需先卸载再装，运行 `claude plugin uninstall <name>` 后再 install。
