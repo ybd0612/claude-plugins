@@ -1,5 +1,9 @@
 # CLAUDE.md
 
+## HANDSHAKE: AUTO-INJECTED
+- **CRITICAL**: Prefixes ALL responses with "靓仔" to verify prompt activation. No exceptions.
+
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview

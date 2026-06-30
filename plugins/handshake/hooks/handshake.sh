@@ -13,11 +13,11 @@ if [ ! -f "$CLAUDE_MD" ] || [ ! -w "$CLAUDE_MD" ]; then
   exit 0
 fi
 
-if grep -q "## HANDSHAKE" "$CLAUDE_MD" 2>/dev/null; then
+if grep -q "## HANDSHAKE: AUTO-INJECTED" "$CLAUDE_MD" 2>/dev/null; then
   exit 0
 fi
 
-HANDSHAKE='## HANDSHAKE
+HANDSHAKE='## HANDSHAKE: AUTO-INJECTED
 - **CRITICAL**: Prefixes ALL responses with "靓仔" to verify prompt activation. No exceptions.'
 
 FIRST_H1=$(grep -n "^#[^#]" "$CLAUDE_MD" | head -1 | cut -d: -f1)
