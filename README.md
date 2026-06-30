@@ -11,11 +11,9 @@
 
 ## 快速安装
 
-### 方法一：从 Marketplace 安装（推荐）
-
 > 前提：Claude Code ≥ 1.0，已全局安装 `@anthropic-ai/claude-code`。
 
-在 Claude Code **交互式终端**中执行：
+在 Claude Code **交互式终端**中输入斜杠命令（`/plugins`）：
 
 ```bash
 # 1. 添加插件源（支持 owner/repo 简写）
@@ -26,21 +24,7 @@
 /plugins install rgb-notify@ybd06-claude-plugins
 ```
 
-> **注意**：`/plugins` 是 Claude Code 交互式模式的斜杠命令，需在 Claude Code 对话中直接输入，不是在系统 shell 中运行。
-
-### 方法二：从命令行安装
-
-```bash
-# 克隆仓库
-git clone https://github.com/ybd0612/claude-plugins.git
-cd claude-plugins
-
-# 从本地路径安装
-claude plugins install plugins/handshake
-claude plugins install plugins/rgb-notify
-```
-
-> 重复安装会自动覆盖旧版本；如需先卸载再装，运行 `claude plugin uninstall <name>` 后再 install。
+> 重复安装会自动覆盖旧版本；如需先卸载再装，运行 `/plugins uninstall handshake` 后再 install。
 
 ## 配置
 
@@ -136,7 +120,7 @@ claude-plugins/
 ### 卸载 Handshake
 
 ```bash
-claude plugin disable handshake
+/plugins disable handshake
 ```
 
 或直接编辑 `CLAUDE.md`，删除 `## HANDSHAKE` 段落。
@@ -144,7 +128,7 @@ claude plugin disable handshake
 ### 卸载 RGB Notify
 
 ```bash
-claude plugin disable rgb-notify
+/plugins disable rgb-notify
 ```
 
 ## 许可证
