@@ -11,16 +11,27 @@
 
 ## 快速安装
 
-### 从 GitHub 克隆后本地安装（推荐）
+### 方法一：从 Marketplace 安装（推荐）
 
 > 前提：Claude Code ≥ 1.0，已全局安装 `@anthropic-ai/claude-code`。
 
 ```bash
-# 1. 克隆仓库
+# 1. 添加插件源
+claude plugin marketplace add https://github.com/ybd0612/claude-plugins
+
+# 2. 从源安装插件
+claude plugin install handshake
+claude plugin install rgb-notify
+```
+
+### 方法二：本地目录安装
+
+```bash
+# 克隆仓库
 git clone https://github.com/ybd0612/claude-plugins.git
 cd claude-plugins
 
-# 2. 安装插件
+# 从本地路径安装
 claude plugin install plugins/handshake
 claude plugin install plugins/rgb-notify
 ```
