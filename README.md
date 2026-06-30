@@ -17,14 +17,14 @@
 
 ```bash
 # 安装 Handshake 插件
-claude plugin install ybd06/claude-plugins#handshake
+claude plugin install ybd0612/claude-plugins#handshake
 
 # 安装 RGB Notify 插件
-claude plugin install ybd06/claude-plugins#rgb-notify
+claude plugin install ybd0612/claude-plugins#rgb-notify
 
 # 全部安装
-claude plugin install ybd06/claude-plugins#handshake
-claude plugin install ybd06/claude-plugins#rgb-notify
+claude plugin install ybd0612/claude-plugins#handshake
+claude plugin install ybd0612/claude-plugins#rgb-notify
 ```
 
 > **注意**：插件仓库为个人私有用途，不建议公开发布到公共市场。

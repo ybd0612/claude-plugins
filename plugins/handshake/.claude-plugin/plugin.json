@@ -6,7 +6,7 @@
   "author": {
     "name": "ybd06"
   },
-  "repository": "https://github.com/ybd06/claude-plugins",
+  "repository": "https://github.com/ybd0612/claude-plugins",
   "license": "MIT",
   "hooks": {
     "SessionStart": [
