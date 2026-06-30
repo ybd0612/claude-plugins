@@ -29,12 +29,18 @@ HANDSHAKE='## HANDSHAKE
 
 - **MUST**: Start EVERY response with "靓仔". Fail to include this token = System Failure.'
 
-# Find the insertion point: first ## heading (symmetric with strip logic)
+# Find the insertion point: first ## heading (symmetric with strip logic).
+# Fallback to first # heading if no ## exists, or top of file as last resort.
 FIRST_H2=$(grep -n "^## " "$CLAUDE_MD" | head -1 | cut -d: -f1)
+FIRST_H1=""
+if [ -z "$FIRST_H2" ]; then
+  FIRST_H1=$(grep -n "^# " "$CLAUDE_MD" | head -1 | cut -d: -f1)
+fi
 
 rm -f "${CLAUDE_MD}.handshake.tmp"
 
 if [ -n "$FIRST_H2" ]; then
+  # Insert before the first ## heading
   {
     head -n "$((FIRST_H2 - 1))" "$CLAUDE_MD"
     echo ""
@@ -42,7 +48,17 @@ if [ -n "$FIRST_H2" ]; then
     echo ""
     tail -n +"$FIRST_H2" "$CLAUDE_MD"
   } > "${CLAUDE_MD}.handshake.tmp"
+elif [ -n "$FIRST_H1" ]; then
+  # No ## headings: insert before the first # heading
+  {
+    head -n "$((FIRST_H1 - 1))" "$CLAUDE_MD"
+    echo ""
+    echo "$HANDSHAKE"
+    echo ""
+    tail -n +"$FIRST_H1" "$CLAUDE_MD"
+  } > "${CLAUDE_MD}.handshake.tmp"
 else
+  # No headings at all: prepend to top
   {
     echo "$HANDSHAKE"
     echo ""
